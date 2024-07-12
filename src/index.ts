@@ -1,18 +1,16 @@
-import express from 'express'
+import dotenv from 'dotenv'
+import { Environment } from 'env-types';
+import AppExpress from './presentation/application/AppExpress';
 
-const app = express()
 
-app.use(express.json())
+dotenv.config()
+Environment.load()
 
-const PORT = 3000
+const PORT: number =  Number(8081)
 
-app.get('/ping', (req, res)=>{
-    console.log('someone pinged here')
-    res.send('pong')
-    
-})
 
-app.listen(PORT, ()=>{
-    console.log(`Server running on port ${PORT}`);
-    
-})
+const app = new AppExpress()
+
+app.init()
+app.build()
+app.listen(PORT)

@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "tsc": "tsc",
+    "dev": "ts-node-dev src/index.ts",
+    "start": "node build/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -12,9 +14,18 @@
   "license": "ISC",
   "devDependencies": {
     "@types/express": "4.17.21",
+    "eslintrc": "^1.0.6",
+    "standard": "^17.1.0",
+    "ts-node-dev": "^2.0.0",
     "typescript": "5.5.3"
   },
   "dependencies": {
+    "@types/compression": "^1.7.5",
+    "@types/cookie-parser": "^1.4.7",
+    "compression": "^1.7.4",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.4.5",
+    "env-types": "1.4.8",
     "express": "4.19.2"
   }
 }
