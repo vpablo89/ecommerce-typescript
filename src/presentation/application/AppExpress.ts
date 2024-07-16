@@ -3,12 +3,13 @@ import cookieParser from 'cookie-parser'
 import compression from 'compression'
 
 import productRouter from '../router/ProductRouter'
+import WebAdapter from './WebAdapter'
 
 
-class AppExpress
+class AppExpress implements WebAdapter
 {
-    private app: Application
-    private PRODUCTS_BASE_URL: string = '/api/v1/products'   
+     app: Application
+     PRODUCTS_BASE_URL: string = '/api/v1/products'   
     
     constructor()
     {

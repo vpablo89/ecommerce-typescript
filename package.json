@@ -22,10 +22,13 @@
   "dependencies": {
     "@types/compression": "^1.7.5",
     "@types/cookie-parser": "^1.4.7",
+    "@types/mongoose-paginate": "^5.0.16",
     "compression": "^1.7.4",
     "cookie-parser": "^1.4.6",
     "dotenv": "^16.4.5",
     "env-types": "1.4.8",
-    "express": "4.19.2"
+    "express": "4.19.2",
+    "mongoose": "8.5.1",
+    "mongoose-paginate-v2": "^1.8.2"
   }
 }
