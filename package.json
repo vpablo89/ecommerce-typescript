@@ -22,8 +22,10 @@
   "dependencies": {
     "@types/compression": "^1.7.5",
     "@types/cookie-parser": "^1.4.7",
+    "@types/dotenv": "^8.2.0",
     "@types/mongoose-paginate": "^5.0.16",
     "@types/mongoose-paginate-v2": "^1.6.5",
+    "awilix": "^10.0.2",
     "compression": "^1.7.4",
     "cookie-parser": "^1.4.6",
     "dotenv": "^16.4.5",
