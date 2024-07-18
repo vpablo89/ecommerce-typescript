@@ -4,14 +4,14 @@ import { Schema, model } from "mongoose"
 const ProductCollection: string = 'products'
 
 const ProductSchema: Schema = new Schema({
-    title: {String },
-    description: { String },
-    code: {String  },
-    price:{Number },
-    status:{Boolean},
-    stock: {Number  },
-    category: {String  },
-    thumbnail:{String  }
+    title: {type: String },
+    description: { type: String },
+    code: {type: String, unique: true },
+    price:{type: Number },
+    status:{type: Boolean},
+    stock: {type: Number,  },
+    category: {type: String  },
+    thumbnail:{type: String, require: true  }
 
 })
 

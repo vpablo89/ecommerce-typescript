@@ -12,19 +12,17 @@ class ProductMongooseRepository implements IProductRepository
         this.Schema = ProductSchema
     }
 
-    async paginate(): Promise<null>
+    async paginate(): Promise<Object>
     {          
      const products = await this.Schema.find() 
-     console.log('productsRepository')
-     console.log(products)
-
-     return null
+     return products
     }
     async getOne(id: number): Promise<void>  {
         throw new Error("Method not implemented."+ id);
     }
     async create(product: IProduct): Promise<void> {
         this.Schema.create(product)
+        console.log(product)
     }
     async update(id: number, body: IProduct): Promise<void> {
         throw new Error("Method not implemented."+ id + body);

@@ -5,7 +5,7 @@ export interface IProductRepository{
     
     
     
-    paginate(): Promise<null>
+    paginate(): Promise<Object>
 
     getOne(id: number): void
 

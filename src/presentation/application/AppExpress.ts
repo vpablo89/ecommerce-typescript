@@ -2,6 +2,8 @@ import express, { Application, urlencoded } from 'express'
 import cookieParser from 'cookie-parser'
 import compression from 'compression'
 
+
+
 import productRouter from '../router/ProductRouter'
 import WebAdapter from './WebAdapter'
 
@@ -19,7 +21,7 @@ class AppExpress implements WebAdapter
     {
      this.app.use(express.json())
      this.app.use(urlencoded({extended: true}))
-     this.app.use(cookieParser())
+     this.app.use(cookieParser())     
      this.app.use(compression({
             brotli:{
                 enabled: true,
@@ -42,7 +44,7 @@ class AppExpress implements WebAdapter
     listen(port: number)
     {
      this.app.listen(port,()=>{
-        console.log(`Sever running on port: ${port}`)
+        console.log(`Sever running on port: ${port}`)        
      })   
     }
 
