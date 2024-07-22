@@ -1,4 +1,8 @@
 import { Schema, model } from "mongoose"
+import paginate from 'mongoose-paginate-v2'
+
+
+
 
 
 const ProductCollection: string = 'products'
@@ -14,6 +18,7 @@ const ProductSchema: Schema = new Schema({
     thumbnail:{type: String, require: true  }
 
 })
+ProductSchema.plugin(paginate)
 
 
 export default model(ProductCollection, ProductSchema)

@@ -1,5 +1,6 @@
 import dotenv from 'dotenv'
 dotenv.config()
+
 import { Environment } from 'env-types';
 
 import AppFactory from './presentation/factories/AppFactory';

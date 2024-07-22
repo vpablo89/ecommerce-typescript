@@ -11,3 +11,4 @@ export interface Product {
 export interface ListOfProducts {
     products: Array<Product>
 }
+

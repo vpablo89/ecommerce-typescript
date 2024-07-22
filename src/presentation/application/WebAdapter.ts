@@ -5,8 +5,6 @@ export interface  WebAdapter
 {    
     app: Application
 
-    PRODUCTS_BASE_URL: string
-
     init(): void
     
     build(): void

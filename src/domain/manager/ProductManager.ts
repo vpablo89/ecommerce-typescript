@@ -1,6 +1,7 @@
 import { IProduct } from "../../data/model/IProduct";
 import { IProductRepository } from "../../data/repository/IProductRepository";
 import ProductMongooseRepository from "../../data/repository/mongoose/ProductMongooseRepository";
+import { criteria } from "../../types";
 
 
 class ProductManager
@@ -12,16 +13,18 @@ class ProductManager
         this.repository = new ProductMongooseRepository()
     }
 
-    async paginate()
+    async paginate(criteria: criteria): Promise<Object>
     {
-        const products =  await this.repository.paginate()        
+        
+        
+        const products =  await this.repository.paginate(criteria)        
         
         return products
     }
 
-    async create(product: IProduct)
-    {
-     this.repository.create(product)   
+    async create(product: IProduct): Promise<void>
+    {     
+     this.repository.create(product)     
     }
 
 

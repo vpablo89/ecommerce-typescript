@@ -39,7 +39,7 @@ class AppExpress implements WebAdapter
     }
     close()
     {
-
+      
     }
     listen(port: number)
     {
