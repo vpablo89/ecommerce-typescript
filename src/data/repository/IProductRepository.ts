@@ -1,13 +1,15 @@
-import { Product } from "../../domain/entities/Product";
-import { criteria } from "../../types";
-import { IProduct } from "../model/IProduct";
+// import { Product } from "../../domain/entities/Product";
+
+import { IProduct } from "../model/IProduct"
+
+
 
 
 export interface IProductRepository{
     
     
     
-    paginate(criteria: criteria): any
+    getAll(): any
 
     // getOne(id: number): void
 

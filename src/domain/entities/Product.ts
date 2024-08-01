@@ -1,7 +1,9 @@
+import { ObjectId } from "mongoose";
+import { IProduct, ProductWithId } from "../../types";
 
 
-export class Product  {
-    id: string
+export class Product implements IProduct {   
+    id?: ObjectId; 
     title: string;
     description: string;
     code: string;
@@ -12,17 +14,19 @@ export class Product  {
     thumbnail: string;
 
     constructor(
-        props: Product
+        product: ProductWithId
     )
     {
-        this.id = props.id
-        this.title = props.title
-        this.description = props.description
-        this.code = props.code
-        this.price = props.price
-        this.status = props.status
-        this.stock = props.stock
-        this.category = props.category
-        this.thumbnail = props.thumbnail
+        {
+        this.id = product._id    
+        this.title = product.title
+        this.description = product.description
+        this.code = product.code
+        this.price = product.price
+        this.status = product.status
+        this.stock = product.stock
+        this.category = product.category
+        this.thumbnail = product.thumbnail
+        }
     }
 }

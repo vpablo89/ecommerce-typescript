@@ -8,6 +8,10 @@ export interface Product {
     available: boolean
 }
 
+export interface ProductDocument extends Omit<Product, 'id'> {
+    _id: ObjectId;
+}
+
 export interface ListOfProducts {
     products: Array<Product>
 }

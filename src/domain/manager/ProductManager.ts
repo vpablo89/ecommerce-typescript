@@ -1,7 +1,7 @@
 import { IProduct } from "../../data/model/IProduct";
 import { IProductRepository } from "../../data/repository/IProductRepository";
 import ProductMongooseRepository from "../../data/repository/mongoose/ProductMongooseRepository";
-import { criteria } from "../../types";
+
 
 
 class ProductManager
@@ -13,12 +13,12 @@ class ProductManager
         this.repository = new ProductMongooseRepository()
     }
 
-    async paginate(criteria: criteria): Promise<Object>
+    async getAll(): Promise<Object>
     {
         
         
-        const products =  await this.repository.paginate(criteria)        
-        
+        const products =  await this.repository.getAll() 
+               
         return products
     }
 
@@ -27,8 +27,7 @@ class ProductManager
      this.repository.create(product)     
     }
 
-
-
+    
 }
 
 export default ProductManager
