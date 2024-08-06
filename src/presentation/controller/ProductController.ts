@@ -3,14 +3,15 @@ import ProductManager from "../../domain/manager/ProductManager"
 import { IProduct } from "../../data/model/IProduct"
 
 
-export const list =  async(_req: Request, res: Response): Promise<void>=>{
+export const list =  async(req: Request, res: Response): Promise<void>=>{
     try 
     {
-             
+     const { limit, page } = req.query        
+     
      const manager: ProductManager = new ProductManager()
-     const products = await manager.getAll()
+     const products = await manager.paginate({limit, page})
                  
-     res.send(products).status(200)  
+     res.send({status: 'success', products: products.docs, ...products, docs: undefined}).status(200).json()  
     }
      catch (error)
     {

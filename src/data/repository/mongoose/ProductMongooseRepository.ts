@@ -1,9 +1,9 @@
 import { IProductRepository } from "../IProductRepository";
 import ProductSchema from "../../model/mongoose/ProductSchema";
-import { Product } from "../../../domain/entities/Product";
+// import { Product } from "../../../domain/entities/Product";
 import { IProduct } from "../../model/IProduct";
 
-// import { Product } from "../../../domain/entities/Product";
+
 
 
 class ProductMongooseRepository implements IProductRepository
@@ -14,10 +14,13 @@ class ProductMongooseRepository implements IProductRepository
     {
         this.Schema = ProductSchema
     }    
-    async getAll(): Promise<Product[]> {
-            
-        return  await this.Schema.find()
+    async paginate(criteria: any) {
         
+        
+        const { limit , page } = criteria
+        const productDocuments =  await this.Schema.paginate({}, {limit, page})
+
+        return productDocuments
         
     }
     

@@ -14,11 +14,11 @@ class ProductManager
         this.repository = new ProductMongooseRepository()
     }
 
-    async getAll(): Promise<Object>
+    async paginate(criteria: any): Promise<Object>
     {
         
         
-        const products =  await this.repository.getAll() 
+        const products =  await this.repository.paginate(criteria) 
                
         return products
     }

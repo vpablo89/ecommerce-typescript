@@ -8,10 +8,10 @@ import { IProduct } from "../IProduct";
 const ProductCollection: string = 'products'
 
 export interface IProductMongoose extends IProduct, Document {
-    
+    paginate(): any
   }
   
-  const ProductSchema: Schema<IProductMongoose> = new Schema<IProductMongoose>({
+  const ProductSchema: Schema = new Schema<IProductMongoose>({
     title: { type: String, required: true },
     description: { type: String, required: true },
     code: { type: String, required: true },
@@ -26,7 +26,7 @@ export interface IProductMongoose extends IProduct, Document {
   // Apply the pagination plugin
   ProductSchema.plugin(mongoosePaginate);
   
-  const ProductModel = mongoose.model<IProductMongoose>(ProductCollection, ProductSchema);
+  const ProductModel = mongoose.model(ProductCollection, ProductSchema);
   
   export default ProductModel;
  

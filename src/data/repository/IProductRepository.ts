@@ -9,7 +9,7 @@ export interface IProductRepository{
     
     
     
-    getAll(): any
+    paginate(criteria: any): Promise<any>
 
     // getOne(id: number): void
 
