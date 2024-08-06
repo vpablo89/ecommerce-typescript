@@ -22,7 +22,7 @@ class ProductMongooseRepository implements IProductRepository
     }
     
     async create(product: IProduct): Promise<void> 
-    {   
+    {      
      await this.Schema.create(product)
     }
     

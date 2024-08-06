@@ -1,6 +1,7 @@
 import { IProduct } from "../../data/model/IProduct";
 import { IProductRepository } from "../../data/repository/IProductRepository";
 import ProductMongooseRepository from "../../data/repository/mongoose/ProductMongooseRepository";
+import createProductValidation from "../validations/product/ProductCreate";
 
 
 
@@ -24,7 +25,11 @@ class ProductManager
 
     async create(product: IProduct): Promise<void>
     {     
-     this.repository.create(product)     
+      await createProductValidation.parseAsync(product) 
+        
+      await this.repository.create(product);
+            
+         
     }
 
     

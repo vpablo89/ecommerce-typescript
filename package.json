@@ -18,7 +18,8 @@
     "eslintrc": "^1.0.6",
     "standard": "^17.1.0",
     "ts-node-dev": "^2.0.0",
-    "typescript": "5.5.3"
+    "typescript": "5.5.3",
+    "zod": "^3.23.8"
   },
   "dependencies": {
     "@types/compression": "^1.7.5",
@@ -30,6 +31,7 @@
     "@types/swagger-ui-express": "^4.1.6",
     "awilix": "^10.0.2",
     "compression": "^1.7.4",
+    "console-ninja": "^1.0.0",
     "cookie-parser": "^1.4.6",
     "dotenv": "^16.4.5",
     "env-types": "1.4.8",

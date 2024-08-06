@@ -6,6 +6,7 @@ import compression from 'compression'
 
 import productRouter from '../router/ProductRouter'
 import WebAdapter from './WebAdapter'
+import ErrorHandler from '../middlewares/ErrorHandler'
 
 
 class AppExpress implements WebAdapter
@@ -31,7 +32,8 @@ class AppExpress implements WebAdapter
     }
     build(): void
     {
-     this.app.use( this.PRODUCTS_BASE_URL , productRouter )   
+     this.app.use( this.PRODUCTS_BASE_URL , productRouter )
+     this.app.use(ErrorHandler)     
     }
     callback(): Application
     {

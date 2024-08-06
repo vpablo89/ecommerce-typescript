@@ -1,5 +1,7 @@
 import  {   NextFunction, Request, Response } from "express"
 import ProductManager from "../../domain/manager/ProductManager"
+import { IProduct } from "../../data/model/IProduct"
+
 
 export const list =  async(_req: Request, res: Response): Promise<void>=>{
     try 
@@ -21,17 +23,17 @@ export const create = async (req: Request, res: Response, next: NextFunction): P
 {
     try
     {
+     const product: IProduct = req.body
+    
      const manager = new ProductManager()
-     await manager.create(req.body)
+     await manager.create(product)
      
      res.send({message: 'Product created successfully'}).status(200)     
      
     }
     catch (error)
     {
-     next(error)         
-    }
-
-
-    console.log('create')
+     next(error)
+    }    
+    
 }
