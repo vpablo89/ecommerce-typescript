@@ -1,9 +1,9 @@
 import { IProductRepository } from "../IProductRepository";
-import ProductSchema from "../../model/mongoose/ProductSchema";
-// import { Product } from "../../../domain/entities/Product";
+import ProductSchema  from "../../model/mongoose/ProductSchema";
 import { IProduct } from "../../model/IProduct";
-
-
+import { Product } from "../../../domain/entities/Product";
+import { IProductsDTO, ProductWith_Id } from "../../../types";
+import { ProductsDTO } from "../../../domain/dto/ProductsDTO";
 
 
 class ProductMongooseRepository implements IProductRepository
@@ -14,13 +14,27 @@ class ProductMongooseRepository implements IProductRepository
     {
         this.Schema = ProductSchema
     }    
-    async paginate(criteria: any) {
+    async paginate(criteria: any): Promise<IProductsDTO> {
         
         
         const { limit , page } = criteria
-        const productDocuments =  await this.Schema.paginate({}, {limit, page})
+        const productDocuments =  await this.Schema.paginate<ProductWith_Id>({}, {limit, page})
 
-        return productDocuments
+        const { docs, ...pagination} = productDocuments
+        
+        const products: Product[]  = docs.map((product: any) => new Product({
+            id: product._id,
+            title: product.title,
+            description: product.description,
+            code: product.code,
+            price: product.price,
+            status: product.status,
+            stock: product.stock,
+            category: product.category,
+            thumbnail: product.thumbnail
+        }))
+
+        return new ProductsDTO(products, pagination)
         
     }
     

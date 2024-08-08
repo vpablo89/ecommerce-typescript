@@ -1,17 +1,11 @@
 
-import mongoose, { Document, Schema} from "mongoose"
+import mongoose, {  Schema} from "mongoose"
 import mongoosePaginate from 'mongoose-paginate-v2'
-import { IProduct } from "../IProduct";
 
 
-
-const ProductCollection: string = 'products'
-
-export interface IProductMongoose extends IProduct, Document {
-    paginate(): any
-  }
+const ProductCollection: string = 'products' 
   
-  const ProductSchema: Schema = new Schema<IProductMongoose>({
+  const ProductSchema: Schema = new Schema({
     title: { type: String, required: true },
     description: { type: String, required: true },
     code: { type: String, required: true },

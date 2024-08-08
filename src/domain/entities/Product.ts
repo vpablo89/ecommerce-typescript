@@ -1,9 +1,9 @@
-import { ObjectId } from "mongoose";
-import { IProduct, ProductWithId } from "../../types";
+
+import { ProductWithId } from "../../types";
 
 
-export class Product implements IProduct {   
-    id?: ObjectId; 
+export class Product implements ProductWithId {   
+    id: string; 
     title: string;
     description: string;
     code: string;
@@ -18,7 +18,7 @@ export class Product implements IProduct {
     )
     {
         {
-        this.id = product._id    
+        this.id = product.id    
         this.title = product.title
         this.description = product.description
         this.code = product.code
@@ -29,4 +29,5 @@ export class Product implements IProduct {
         this.thumbnail = product.thumbnail
         }
     }
+    
 }
