@@ -1,8 +1,9 @@
+import container from "../../container";
 import { IProduct } from "../../data/model/IProduct";
 import { IProductRepository } from "../../data/repository/IProductRepository";
-import ProductMongooseRepository from "../../data/repository/mongoose/ProductMongooseRepository";
 import { IProductsDTO } from "../../types";
 import { ProductsDTO } from "../dto/ProductsDTO";
+import { Product } from "../entities/Product";
 import createProductValidation from "../validations/product/ProductCreate";
 
 
@@ -13,7 +14,7 @@ class ProductManager
 
     constructor(  )
     {
-        this.repository = new ProductMongooseRepository()
+        this.repository = container.resolve('ProductRepository')
     }
 
     async paginate(criteria: any): Promise<IProductsDTO>
@@ -21,6 +22,7 @@ class ProductManager
         
         
         const products : ProductsDTO=  await this.repository.paginate(criteria) 
+          
                
         return products
     }
@@ -29,9 +31,32 @@ class ProductManager
     {     
       await createProductValidation.parseAsync(product) 
         
-      await this.repository.create(product);
-            
+      await this.repository.create(product);            
          
+    }
+
+    async getOne(id: string): Promise<Product>
+    {
+        const product: Product = await this.repository.getOne(id)
+        if(!product)
+        {
+            throw new Error('Product not found')
+        }
+        return product
+    }
+
+    async deleteById(id: string): Promise<void>
+    {
+        const product = await this.repository.getOne(id)
+
+        if(!product)
+        {
+            throw new Error('Product not found')
+        }
+        
+        
+        await this.repository.deleteById(id)
+
     }
 
     

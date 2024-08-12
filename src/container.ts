@@ -1,16 +1,16 @@
-// import dotenv from 'dotenv'
-// dotenv.config()
+import dotenv from 'dotenv'
+dotenv.config()
 
-// import { createContainer, asClass, Lifetime } from 'awilix'
+import { createContainer, asClass, Lifetime } from 'awilix'
 
-// import ProductMongooseRepository from './data/repository/mongoose/ProductMongooseRepository'
+import ProductMongooseRepository from './data/repository/mongoose/ProductMongooseRepository'
 
-// const container = createContainer()
+const container = createContainer()
 
 
-// container.register('ProductRepository', asClass(ProductMongooseRepository))
+container.register('ProductRepository', asClass(ProductMongooseRepository, {lifetime: Lifetime.SINGLETON}))
 
-// export default container
+export default container
 
 
 

@@ -14,12 +14,13 @@ class ProductMongooseRepository implements IProductRepository
     {
         this.Schema = ProductSchema
     }    
+    
     async paginate(criteria: any): Promise<IProductsDTO> {
         
         
         const { limit , page } = criteria
         const productDocuments =  await this.Schema.paginate<ProductWith_Id>({}, {limit, page})
-
+        
         const { docs, ...pagination} = productDocuments
         
         const products: Product[]  = docs.map((product: any) => new Product({
@@ -33,16 +34,36 @@ class ProductMongooseRepository implements IProductRepository
             category: product.category,
             thumbnail: product.thumbnail
         }))
-
+        
         return new ProductsDTO(products, pagination)
         
     }
     
     async create(product: IProduct): Promise<void> 
     {      
-     await this.Schema.create(product)
+        await this.Schema.create(product)
     }
     
+    async getOne(id: string): Promise<Product> {
+        const product : any = await this.Schema.findById(id)       
+
+        return new Product({
+            id: product._id,
+            title: product.title,
+            description: product.description,
+            code: product.code,
+            price: product.price,
+            status: product.status,
+            stock: product.stock,
+            category: product.category,
+            thumbnail: product.thumbnail
+        })
+
+    }
+    async deleteById(id: string): Promise<void> {
+        
+        await this.Schema.deleteOne({_id: id}) 
+    }
 }  
 
 

@@ -1,6 +1,7 @@
 import express, { Application, urlencoded } from 'express'
 import cookieParser from 'cookie-parser'
 import compression from 'compression'
+import cors from 'cors'
 
 
 
@@ -22,7 +23,8 @@ class AppExpress implements WebAdapter
     {
      this.app.use(express.json())
      this.app.use(urlencoded({extended: true}))
-     this.app.use(cookieParser())     
+     this.app.use(cookieParser())  
+     this.app.use(cors())   
      this.app.use(compression({
             brotli:{
                 enabled: true,
