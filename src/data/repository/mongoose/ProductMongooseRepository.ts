@@ -2,7 +2,7 @@ import { IProductRepository } from "../IProductRepository";
 import ProductSchema  from "../../model/mongoose/ProductSchema";
 import { IProduct } from "../../model/IProduct";
 import { Product } from "../../../domain/entities/Product";
-import { IProductsDTO, ProductWith_Id } from "../../../types";
+import { IProductsDTO, IProductUpdate, ProductWith_Id } from "../../../types";
 import { ProductsDTO } from "../../../domain/dto/ProductsDTO";
 
 
@@ -14,6 +14,7 @@ class ProductMongooseRepository implements IProductRepository
     {
         this.Schema = ProductSchema
     }    
+    
     
     async paginate(criteria: any): Promise<IProductsDTO> {
         
@@ -63,6 +64,10 @@ class ProductMongooseRepository implements IProductRepository
     async deleteById(id: string): Promise<void> {
         
         await this.Schema.deleteOne({_id: id}) 
+    }
+
+    async update(id: string, body: IProductUpdate): Promise<void> {
+        await this.Schema.findByIdAndUpdate({_id: id}, body)
     }
 }  
 

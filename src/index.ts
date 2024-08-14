@@ -13,13 +13,15 @@ const PORT: number =  8081
 
 void(async()=>{
     
-    const db = DBFactory.create('MongooseAdapter')
-    db.init('mongodb+srv://verapablodaniel1989:Florista1909@verapablomongodb.7nd8dan.mongodb.net')
+    const db = DBFactory.create(process.env.DB)
+    db.init(process.env.DB_URI || '' )
     
-    const app = AppFactory.create(process.env.APP_TYPE || 'AppExpress')   
+    const app = AppFactory.create(process.env.APP_TYPE )   
     
     app.init()
     app.build()
     app.listen(PORT)
 
 })()
+
+

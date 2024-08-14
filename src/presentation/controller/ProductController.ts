@@ -88,3 +88,23 @@ export const deleteById = async (req: Request, res: Response, next: NextFunction
      next(error)
     }
 }
+
+export const update = async (req: Request, res: Response, next: NextFunction): Promise<void> => 
+{
+    try
+    {
+     const { id } = req.params
+     const body = req.body
+     const manager = new ProductManager()
+
+     await manager.getOne(id)    
+     
+     await manager.update(id, body)
+     
+     res.send({message: 'Product updated successfully'}).status(200).json()
+    }
+    catch (error)
+    {
+     next(error)
+    }
+}

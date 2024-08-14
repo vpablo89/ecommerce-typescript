@@ -1,5 +1,5 @@
 import { Router } from "express"; 
-import { create, deleteById, getOne, list } from "../controller/ProductController";
+import { create, deleteById, getOne, list, update } from "../controller/ProductController";
 
 
 
@@ -12,6 +12,8 @@ productRouter.post('/', create)
 productRouter.get('/:id', getOne)
 
 productRouter.delete('/:id', deleteById)
+
+productRouter.put('/:id', update)
 
 
 export default productRouter

@@ -6,8 +6,8 @@ class MongooseAdapter implements IDBAdapter{
     
     private connection!: Connection    
 
-    async init(uri: string): Promise<void> {
-       const mongooseInstance = await mongoose.connect(uri, {dbName: "ecommerce", })
+    async init(uri: string ): Promise<void> {
+       const mongooseInstance = await mongoose.connect(uri, {dbName: "ecommerce",  })
        this.connection = mongooseInstance.connection
        if(this.connection)
        {

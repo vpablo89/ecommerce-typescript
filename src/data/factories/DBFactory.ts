@@ -3,7 +3,7 @@ import MongooseAdapter from "./MongooseAdapter"
 
 class DBFactory
 {
-    static create(DbType: string)
+    static create(DbType: string = 'MongooseAdapter')
     {
      const dbs = new Map<string, new ()=>  IDBAdapter>()
      dbs.set('MongooseAdapter', MongooseAdapter) 

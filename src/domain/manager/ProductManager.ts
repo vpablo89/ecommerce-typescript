@@ -1,7 +1,7 @@
 import container from "../../container";
 import { IProduct } from "../../data/model/IProduct";
 import { IProductRepository } from "../../data/repository/IProductRepository";
-import { IProductsDTO } from "../../types";
+import { IProductsDTO, IProductUpdate } from "../../types";
 import { ProductsDTO } from "../dto/ProductsDTO";
 import { Product } from "../entities/Product";
 import createProductValidation from "../validations/product/ProductCreate";
@@ -52,11 +52,13 @@ class ProductManager
         if(!product)
         {
             throw new Error('Product not found')
-        }
-        
+        }        
         
         await this.repository.deleteById(id)
+    }
 
+    async update(id: string, body: IProductUpdate): Promise<void>{
+        await this.repository.update(id, body)
     }
 
     

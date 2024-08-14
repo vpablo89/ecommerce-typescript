@@ -1,6 +1,7 @@
 // import { Product } from "../../domain/entities/Product";
 
 import { Product } from "../../domain/entities/Product"
+import { IProductUpdate } from "../../types"
 import { IProduct } from "../model/IProduct"
 
 
@@ -18,7 +19,7 @@ export interface IProductRepository{
 
     deleteById(_id: string):Promise<void>
 
-    // update(id: number, body: IProduct): void
+    update(id:string,  body: IProductUpdate): void
 
 
 
