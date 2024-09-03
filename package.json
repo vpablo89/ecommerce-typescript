@@ -7,31 +7,42 @@
     "tsc": "tsc",
     "dev": "ts-node-dev src/index.ts",
     "start": "node build/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --verbose  --detectOpenHandles --forceExit"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/chai": "^4.3.17",
     "@types/express": "4.17.21",
-    "@types/node": "^22.0.0",
+    "@types/jest": "^29.5.12",
+    "@types/jsonwebtoken": "^9.0.6",
+    "@types/node": "^22.3.0",
+    "@types/supertest": "^6.0.2",
+    "chai": "^5.1.1",
     "eslintrc": "^1.0.6",
+    "jest": "^29.7.0",
     "standard": "^17.1.0",
+    "supertest": "^7.0.0",
+    "ts-jest": "^29.2.4",
+    "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",
     "typescript": "5.5.3",
     "zod": "^3.23.8"
   },
   "dependencies": {
+    "@types/bcrypt": "^5.0.2",
     "@types/compression": "^1.7.5",
     "@types/cookie-parser": "^1.4.7",
     "@types/cors": "^2.8.17",
     "@types/dotenv": "^8.2.0",
     "@types/mongoose-paginate": "^5.0.16",
     "@types/mongoose-paginate-v2": "^1.6.5",
+    "@types/passport-jwt": "^4.0.1",
     "@types/swagger-jsdoc": "^6.0.4",
     "@types/swagger-ui-express": "^4.1.6",
     "awilix": "^10.0.2",
-    "chai": "^5.1.1",
+    "bcrypt": "^5.1.1",
     "compression": "^1.7.4",
     "console-ninja": "^1.0.0",
     "cookie-parser": "^1.4.6",
@@ -39,13 +50,24 @@
     "dotenv": "^16.4.5",
     "env-types": "1.4.8",
     "express": "4.19.2",
-    "jest": "^29.7.0",
+    "jsonwebtoken": "^9.0.2",
     "mongoose": "8.5.1",
     "mongoose-paginate": "^5.0.3",
     "mongoose-paginate-v2": "^1.8.2",
     "mysql2": "^3.11.0",
+    "passport-jwt": "^4.0.1",
     "swagger-client": "^3.28.2",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "collectCoverage": true,
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "test/",
+      "/dist/"
+    ]
   }
 }

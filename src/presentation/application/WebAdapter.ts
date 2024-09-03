@@ -13,7 +13,7 @@ export interface  WebAdapter
     
     close(): void
     
-    listen(port: number): void
+    listen(port: string): void
     
 
 }

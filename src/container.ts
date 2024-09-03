@@ -3,7 +3,7 @@ dotenv.config()
 
 import { createContainer, asClass, Lifetime } from 'awilix'
 
-import ProductMongooseRepository from './data/repository/mongoose/ProductMongooseRepository'
+import ProductMongooseRepository from './data/repository/product/mongoose/ProductMongooseRepository'
 
 const container = createContainer()
 

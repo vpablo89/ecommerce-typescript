@@ -45,7 +45,7 @@ class AppExpress implements WebAdapter
     {
       
     }
-    listen(port: number)
+    listen(port: string)
     {
      this.app.listen(port,()=>{
         console.log(`Sever running on port: ${port}`)        

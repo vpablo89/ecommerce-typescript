@@ -1,9 +1,9 @@
-import { IProductRepository } from "../IProductRepository";
-import ProductSchema  from "../../model/mongoose/ProductSchema";
-import { IProduct } from "../../model/IProduct";
-import { Product } from "../../../domain/entities/Product";
-import { IProductsDTO, IProductUpdate, ProductWith_Id } from "../../../types";
-import { ProductsDTO } from "../../../domain/dto/ProductsDTO";
+import { IProductRepository } from "@/data/repository/product/IProductRepository";
+import ProductSchema  from "../../../model/product/mongoose/ProductSchema";
+import { IProduct } from "../../../model/product/mongoose/ProductSchema";
+import { Product } from "../../../../domain/entities/Product";
+import { IProductsDTO, IProductUpdate, ProductWith_Id } from "@/types";
+import { ProductsDTO } from "../../../../domain/dto/ProductsDTO";
 
 
 class ProductMongooseRepository implements IProductRepository

@@ -1,8 +1,18 @@
+interface IProduct {
+    id: string
+    title: string;
+    description: string;
+    code: string;
+    price: number;
+    status: boolean;
+    stock: number;
+    category: string;
+    thumbnail: string;
+}
 
-import { ProductWithId } from "../../types";
 
 
-export class Product implements ProductWithId {   
+export class Product  {   
     id: string; 
     title: string;
     description: string;
@@ -14,7 +24,7 @@ export class Product implements ProductWithId {
     thumbnail: string;
 
     constructor(
-        product: ProductWithId
+        product: IProduct
     )
     {
         {

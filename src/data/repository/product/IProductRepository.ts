@@ -1,8 +1,10 @@
 // import { Product } from "../../domain/entities/Product";
 
-import { Product } from "../../domain/entities/Product"
-import { IProductUpdate } from "../../types"
-import { IProduct } from "../model/IProduct"
+import { Product } from "@/domain/entities/Product"
+import { IProductUpdate } from "@/types"
+import { IProduct } from "@/data/model/product/mongoose/ProductSchema"
+
+
 
 
 

@@ -1,4 +1,4 @@
-import { IProductsDTO, ProductWithId } from "../../types";
+import { IProductsDTO, ProductWithId } from "@/types";
 
 
 export class ProductsDTO implements IProductsDTO{

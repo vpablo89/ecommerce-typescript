@@ -1,9 +1,9 @@
 import container from "../../container";
-import { IProduct } from "../../data/model/IProduct";
-import { IProductRepository } from "../../data/repository/IProductRepository";
+import { IProduct } from "@/data/model/product/mongoose/ProductSchema";
+import { IProductRepository } from "../../data/repository/product/IProductRepository";
 import { IProductsDTO, IProductUpdate } from "../../types";
-import { ProductsDTO } from "../dto/ProductsDTO";
-import { Product } from "../entities/Product";
+import { ProductsDTO } from "@/domain/dto/ProductsDTO";
+import { Product } from "@/domain/entities/Product";
 import createProductValidation from "../validations/product/ProductCreate";
 
 

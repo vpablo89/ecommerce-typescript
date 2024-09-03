@@ -1,7 +1,8 @@
 import  {   NextFunction, Request, Response } from "express"
+
+import { IProduct } from "@/data/model/product/mongoose/ProductSchema"
+import { ProductsDTO } from "@/domain/dto/ProductsDTO"
 import ProductManager from "../../domain/manager/ProductManager"
-import { IProduct } from "../../data/model/IProduct"
-import { ProductsDTO } from "../../domain/dto/ProductsDTO"
 
 
 export const list =  async(req: Request, res: Response, next: NextFunction): Promise<void>=>{
@@ -43,7 +44,7 @@ export const create = async (req: Request, res: Response, next: NextFunction): P
      const manager = new ProductManager()
      await manager.create(product)
      
-     res.send({message: 'Product created successfully'}).status(200)     
+     res.status(201).send({message: 'Product created successfully'})     
      
     }
     catch (error)

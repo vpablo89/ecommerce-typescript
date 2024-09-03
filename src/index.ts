@@ -8,13 +8,14 @@ import DBFactory from './data/factories/DBFactory';
 
 Environment.load()
 
-const PORT: number =  8081
+const PORT: string =  process.env.NODE_PORT || '8081'
 
 
 void(async()=>{
     
     const db = DBFactory.create(process.env.DB)
-    db.init(process.env.DB_URI || '' )
+    console.log(process.env.PORT)
+    db.init(process.env.DB_URI || '')
     
     const app = AppFactory.create(process.env.APP_TYPE )   
     
