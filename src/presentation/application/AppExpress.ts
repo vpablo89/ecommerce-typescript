@@ -6,6 +6,7 @@ import cors from 'cors'
 
 
 import productRouter from '../router/ProductRouter'
+import userRouter from '../router/UserRouter'
 import WebAdapter from './WebAdapter'
 import ErrorHandler from '../middlewares/ErrorHandler'
 
@@ -13,7 +14,8 @@ import ErrorHandler from '../middlewares/ErrorHandler'
 class AppExpress implements WebAdapter
 {
      app: Application
-     PRODUCTS_BASE_URL: string = '/api/v1/products'   
+     PRODUCTS_BASE_URL: string = '/api/v1/products'  
+     USERS_BASE_URL: string = '/api/v1/users' 
     
     constructor()
     {
@@ -35,6 +37,7 @@ class AppExpress implements WebAdapter
     build(): void
     {
      this.app.use( this.PRODUCTS_BASE_URL , productRouter )
+     this.app.use( this.USERS_BASE_URL , userRouter )
      this.app.use(ErrorHandler)     
     }
     callback(): Application

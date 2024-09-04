@@ -1,8 +1,9 @@
-import container from "@/container";
+import container from "../../container";
 import { IUserRepository } from "@/data/repository/user/IUserRepository";
 import { Criteria } from "@/types";
 import { UsersDTO } from "../dto/UsersDTO";
-import User from "../entities/User";
+import { User } from "../entities/User";
+
 
 
 
@@ -32,6 +33,19 @@ class UserManager {
       throw new Error("User not found");
     }
     return user;
+  }
+
+  async deleteById(id: string): Promise<void> {
+    const user = await this.userRepository.getOne(id);
+    if (!user) {
+      throw new Error("User not found");
+    }
+    await this.userRepository.deleteById(id);
+  }
+
+  async update(id: string, body: User): Promise<void> {
+    
+    await this.userRepository.update(id, body);
   }
 
 }

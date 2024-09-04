@@ -23,13 +23,11 @@ export const list =  async(req: Request, res: Response, next: NextFunction): Pro
       throw new Error()
     }    
                  
-     res.send({status: 'success', products, ...pagination }).status(200).json()  
+     res.send({status: 'success', products, ...pagination })
     }
      catch (error)
     {
-     res.status(404).send({message: 'Products not found'}).json()
-     console.log('error resuelto')
-     next(error)       
+     next(error)
     }
     
 }
@@ -64,7 +62,7 @@ export const getOne = async (req: Request, res: Response, next: NextFunction): P
           throw new Error('Product not found')
          }
          
-         res.send({status: 'success', product}).status(200).json()
+         res.send({status: 'success', product})
         }
         catch (error)
         {
