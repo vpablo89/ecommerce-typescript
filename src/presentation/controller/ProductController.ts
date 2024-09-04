@@ -1,8 +1,8 @@
 import  {   NextFunction, Request, Response } from "express"
 
-import { IProduct } from "@/data/model/product/mongoose/ProductSchema"
 import { ProductsDTO } from "@/domain/dto/ProductsDTO"
 import ProductManager from "../../domain/manager/ProductManager"
+import { Product } from "@/domain/entities/Product"
 
 
 export const list =  async(req: Request, res: Response, next: NextFunction): Promise<void>=>{
@@ -11,9 +11,9 @@ export const list =  async(req: Request, res: Response, next: NextFunction): Pro
      const { limit, page } = req.query        
      
      const manager: ProductManager = new ProductManager()
-     const documents: ProductsDTO = await manager.paginate({limit, page})
+     const documents: ProductsDTO = await manager.paginate({limit: Number(limit), page: Number(page)})
      if(!documents){
-        console.log('por aca')
+        
         throw new Error('Products not found, Bad Request')
      }
      const { products, pagination} = documents
@@ -21,8 +21,7 @@ export const list =  async(req: Request, res: Response, next: NextFunction): Pro
      if(products.length === 0)
      {
       throw new Error()
-    }
-     
+    }    
                  
      res.send({status: 'success', products, ...pagination }).status(200).json()  
     }
@@ -39,7 +38,7 @@ export const create = async (req: Request, res: Response, next: NextFunction): P
 {
     try
     {
-     const product: IProduct = req.body
+     const product: Product = req.body
     
      const manager = new ProductManager()
      await manager.create(product)
@@ -71,7 +70,7 @@ export const getOne = async (req: Request, res: Response, next: NextFunction): P
         {
          next(error)
         }
-    }
+}
 
 export const deleteById = async (req: Request, res: Response, next: NextFunction): Promise<void> =>
 {
@@ -82,7 +81,7 @@ export const deleteById = async (req: Request, res: Response, next: NextFunction
      
      await manager.deleteById(id)
         
-     res.send({message: 'Product deleted successfully'}).status(204).json()
+     res.status(204)
     }
     catch (error)
     {

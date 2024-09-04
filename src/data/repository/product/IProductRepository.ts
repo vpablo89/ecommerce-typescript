@@ -1,29 +1,23 @@
-// import { Product } from "../../domain/entities/Product";
 
 import { Product } from "@/domain/entities/Product"
-import { IProductUpdate } from "@/types"
-import { IProduct } from "@/data/model/product/mongoose/ProductSchema"
+import { Criteria, IProductsDTO } from "@/types"
 
 
 
 
 
 
-export interface IProductRepository{
+
+export interface IProductRepository{    
     
-    
-    
-    paginate(criteria: any): Promise<any>
+    paginate(criteria: Criteria): Promise<IProductsDTO>
 
-    create(product: IProduct): void
+    create(product: Product): void
     
     getOne(id: string): Promise<Product>
 
     deleteById(_id: string):Promise<void>
 
-    update(id:string,  body: IProductUpdate): void
-
-
-
+    update(id:string,  body: Product): void
 
 }

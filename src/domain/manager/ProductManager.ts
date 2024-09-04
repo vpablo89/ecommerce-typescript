@@ -1,7 +1,7 @@
 import container from "../../container";
-import { IProduct } from "@/data/model/product/mongoose/ProductSchema";
+
 import { IProductRepository } from "../../data/repository/product/IProductRepository";
-import { IProductsDTO, IProductUpdate } from "../../types";
+import { Criteria } from "../../types";
 import { ProductsDTO } from "@/domain/dto/ProductsDTO";
 import { Product } from "@/domain/entities/Product";
 import createProductValidation from "../validations/product/ProductCreate";
@@ -17,7 +17,7 @@ class ProductManager
         this.repository = container.resolve('ProductRepository')
     }
 
-    async paginate(criteria: any): Promise<IProductsDTO>
+    async paginate(criteria: Criteria): Promise<ProductsDTO>
     {
         
         
@@ -27,7 +27,7 @@ class ProductManager
         return products
     }
 
-    async create(product: IProduct): Promise<void>
+    async create(product: Product): Promise<void>
     {     
       await createProductValidation.parseAsync(product) 
         
@@ -57,7 +57,7 @@ class ProductManager
         await this.repository.deleteById(id)
     }
 
-    async update(id: string, body: IProductUpdate): Promise<void>{
+    async update(id: string, body: Product): Promise<void>{
         await this.repository.update(id, body)
     }
 

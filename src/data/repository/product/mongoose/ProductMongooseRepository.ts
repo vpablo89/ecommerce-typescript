@@ -1,26 +1,25 @@
 import { IProductRepository } from "@/data/repository/product/IProductRepository";
 import ProductSchema  from "../../../model/product/mongoose/ProductSchema";
-import { IProduct } from "../../../model/product/mongoose/ProductSchema";
 import { Product } from "../../../../domain/entities/Product";
-import { IProductsDTO, IProductUpdate, ProductWith_Id } from "@/types";
+import { Criteria, IProductDocument, IProductsDTO} from "@/types";
 import { ProductsDTO } from "../../../../domain/dto/ProductsDTO";
 
 
 class ProductMongooseRepository implements IProductRepository
 {   
-    private Schema
+    private productSchema
 
     constructor()
     {
-        this.Schema = ProductSchema
+        this.productSchema = ProductSchema
     }    
     
     
-    async paginate(criteria: any): Promise<IProductsDTO> {
+    async paginate(criteria: Criteria): Promise<IProductsDTO> {
         
         
         const { limit , page } = criteria
-        const productDocuments =  await this.Schema.paginate<ProductWith_Id>({}, {limit, page})
+        const productDocuments =  await this.productSchema.paginate<IProductDocument>({}, {limit, page})
         
         const { docs, ...pagination} = productDocuments
         
@@ -40,13 +39,13 @@ class ProductMongooseRepository implements IProductRepository
         
     }
     
-    async create(product: IProduct): Promise<void> 
+    async create(product: Product): Promise<void> 
     {      
-        await this.Schema.create(product)
+        await this.productSchema.create(product)
     }
     
     async getOne(id: string): Promise<Product> {
-        const product : any = await this.Schema.findById(id)       
+        const product : any = await this.productSchema.findById(id)       
 
         return new Product({
             id: product._id,
@@ -63,11 +62,11 @@ class ProductMongooseRepository implements IProductRepository
     }
     async deleteById(id: string): Promise<void> {
         
-        await this.Schema.deleteOne({_id: id}) 
+        await this.productSchema.deleteOne({_id: id}) 
     }
 
-    async update(id: string, body: IProductUpdate): Promise<void> {
-        await this.Schema.findByIdAndUpdate({_id: id}, body)
+    async update(id: string, body: Product): Promise<void> {
+        await this.productSchema.findByIdAndUpdate({_id: id}, body)
     }
 }  
 

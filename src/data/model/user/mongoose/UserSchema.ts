@@ -1,22 +1,9 @@
-import mongoose, { Document, Schema } from "mongoose";
+import { IUserDocument } from "@/types";
+import mongoose, {  Schema } from "mongoose";
 import mongoosePaginate from 'mongoose-paginate-v2'
 
 
 const userDocuments = 'users'
-
-export interface IUserDocument extends Document{    
-    firstName: string;
-    lastName: string;
-    email: string;
-    age: number;
-    password: string;
-    isAdmin: boolean;
-    role: string;
-
-    
-}
-
-
 
 const UserSchema: Schema = new Schema<IUserDocument>({
 

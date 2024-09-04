@@ -22,8 +22,7 @@ const ErrorHandler = (error: Error, _req: Request, res: Response, _next: NextFun
       else if(error.message.includes("Cannot read properties of null (reading '_id')")) 
      {
         res.status(400).send({message: 'No product found'}).json
-        
-     }     
+     }    
      else
      {
         res.status(500).send({message: error.message}).json()
