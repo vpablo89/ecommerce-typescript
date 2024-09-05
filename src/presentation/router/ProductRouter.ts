@@ -1,5 +1,6 @@
 import { Router } from "express"; 
 import { create, deleteById, getOne, list, update } from "../controller/ProductController";
+import auth from "../middlewares/auth";
 
 
 
@@ -9,7 +10,7 @@ productRouter.get('/', list)
 
 productRouter.post('/', create)
 
-productRouter.get('/:id', getOne)
+productRouter.get('/:id', auth, getOne)
 
 productRouter.delete('/:id', deleteById)
 
