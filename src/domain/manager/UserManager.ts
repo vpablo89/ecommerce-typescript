@@ -3,6 +3,8 @@ import { IUserRepository } from "@/data/repository/user/IUserRepository";
 import { Criteria } from "@/types";
 import { UsersDTO } from "../dto/UsersDTO";
 import { User } from "../entities/User";
+import userCreateValidation from "../validations/user/UserCreate";
+import { createHash } from "../../shared";
 
 
 
@@ -21,10 +23,21 @@ class UserManager {
     return users;
   }
 
-  async create(user: User): Promise<void> {
+  async create(data: User): Promise<User> {
 
-    await  this.userRepository.create(user);
-  }
+    await userCreateValidation.parseAsync(data);
+
+    const dto : User= {
+      ...data,
+      password: await createHash(data.password),
+    };
+    
+    const user = await this.userRepository.create(dto);
+    
+    return {...user, password: ''};
+
+    }   
+  
 
   async getOne(id: string): Promise<User> {
    

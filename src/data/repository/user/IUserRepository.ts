@@ -1,4 +1,4 @@
-import User from "@/domain/entities/User"
+import {User} from "@/domain/entities/User"
 import { Criteria, IUsersDTO } from "@/types"
 
 
@@ -7,9 +7,11 @@ export interface IUserRepository
 {
     paginate(criteria: Criteria): Promise<IUsersDTO>
 
-    create(product: User): Promise<void>
+    create(product: User): Promise<User>
 
     getOne(id: string): Promise<User>
+
+    getOneByEmail(email: string): Promise<User>
 
     deleteById(_id: string):Promise<void>
 

@@ -12,13 +12,13 @@ class UserMongooseRepository implements IUserRepository {
     constructor() {
         this.userSchema = UserSchema
     }
-
+    
     async paginate(criteria: Criteria): Promise<IUsersDTO> {
         const { limit, page } = criteria
-
+        
         const userDocuments = await this.userSchema.paginate<IUserDocument>({}, { limit, page })
         const { docs, ...pagination } = userDocuments
-
+        
         const users: User[] = docs.map((user: any) => new User({
             id: user._id,
             firstName: user.firstName,
@@ -31,13 +31,38 @@ class UserMongooseRepository implements IUserRepository {
         }))
         return new UsersDTO(users, pagination)
     }
-    async create(user: User): Promise<void>
+    async create(user: User): Promise<User>
     {
         await this.userSchema.create(user)
+
+        return new User({
+            id: user.id,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            email: user.email,
+            password: user.password,
+            age: user.age,
+            isAdmin: user.isAdmin,
+            role: user.role
+        })
     }
     async getOne(id: string): Promise<User>
     {
         const user: any = await this.userSchema.findById(id)
+        
+        return new User({
+            id: user._id,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            email: user.email,
+            password: user.password,
+            age: user.age,
+            isAdmin: user.isAdmin,
+            role: user.role
+        })
+    }
+    async getOneByEmail(email: string): Promise<User> {
+        const user: any = await this.userSchema.findOne({ email})
 
         return new User({
             id: user._id,
@@ -49,6 +74,7 @@ class UserMongooseRepository implements IUserRepository {
             isAdmin: user.isAdmin,
             role: user.role
         })
+
     }
     async deleteById(id: string): Promise<void> {
         await this.userSchema.deleteOne({ _id: id })

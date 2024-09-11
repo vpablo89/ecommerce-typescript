@@ -18,4 +18,6 @@ export const generateToken = async(user: User)=>
     {
         const token: string = await jwt.sign({user: {...user, password: undefined}}, process.env.PRIVATE_KEY || '', {expiresIn: '1h'})
         resolve(token)
-    }    
+    }
+
+   

@@ -60,6 +60,7 @@ export interface IUser {
     role: string    
   }
 
+export  type UserDTO  = Omit<IUser, 'password'>; 
 export interface IUserDocument extends IUser, Document{    
    
 

@@ -9,13 +9,15 @@ import productRouter from '../router/ProductRouter'
 import userRouter from '../router/UserRouter'
 import WebAdapter from './WebAdapter'
 import ErrorHandler from '../middlewares/ErrorHandler'
+import sessionRouter from '../router/SessionRouter'
 
 
 class AppExpress implements WebAdapter
 {
      app: Application
      PRODUCTS_BASE_URL: string = '/api/v1/products'  
-     USERS_BASE_URL: string = '/api/v1/users' 
+     USERS_BASE_URL: string = '/api/v1/users'
+     SESSION_BASE_URL: string = '/api/v1/sessions' 
     
     constructor()
     {
@@ -38,6 +40,7 @@ class AppExpress implements WebAdapter
     {
      this.app.use( this.PRODUCTS_BASE_URL , productRouter )
      this.app.use( this.USERS_BASE_URL , userRouter )
+     this.app.use( this.SESSION_BASE_URL, sessionRouter)
      this.app.use(ErrorHandler)     
     }
     callback(): Application
