@@ -18,7 +18,7 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
             httpOnly: true,
             secure: true,
             sameSite: 'none',
-            maxAge: 1000 * 60 * 60 }).send({message: 'Login success', accesToken})
+            maxAge: 1000 * 60 * 60 }).send({message: 'Login success', accesToken: accesToken})
 
     }
     catch (error)

@@ -1,7 +1,6 @@
 import { User } from '@/domain/entities/User';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import { resolve } from 'path';
 
 
 export const createHash = async (password: string): Promise<string>  => 
@@ -16,8 +15,9 @@ export const isValidPassword = async (password: string, passwordHash: string): P
 
 export const generateToken = async(user: User)=>
     {
+        return new Promise(async (resolve, _reject) => {
         const token: string = await jwt.sign({user: {...user, password: undefined}}, process.env.PRIVATE_KEY || '', {expiresIn: '1h'})
         resolve(token)
+    })
     }
-
    

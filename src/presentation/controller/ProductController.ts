@@ -23,7 +23,7 @@ export const list =  async(req: Request, res: Response, next: NextFunction): Pro
       throw new Error()
     }    
                  
-     res.send({status: 'success', products, ...pagination })
+     res.status(200).json({status: 'success', products, ...pagination })
     }
      catch (error)
     {

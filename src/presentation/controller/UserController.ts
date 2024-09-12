@@ -33,7 +33,7 @@ export const create = async (req: Request, res: Response, next: NextFunction): P
         const manager = new UserManager()
         await manager.create(user)
 
-        res.status(201).send({ message: 'Product created successfully' })
+        res.status(201).send({ message: 'User created successfully' })
 
     }
     catch (error) {
