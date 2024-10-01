@@ -1,20 +1,20 @@
 import { Router } from "express"; 
 import { create, deleteById, getOne, list, update } from "../controller/ProductController";
-import auth from "../middlewares/auth";
+import auth from "../middlewares/Auth";
 
 
 
 const productRouter: Router = Router()
 
-productRouter.get('/', list)
+productRouter.get('/',  list)
 
-productRouter.post('/', create)
+productRouter.post('/', auth, create)
 
-productRouter.get('/:id', auth, getOne)
+productRouter.get('/:id',  getOne)
 
-productRouter.delete('/:id', deleteById)
+productRouter.delete('/:id', auth,  deleteById)
 
-productRouter.put('/:id', update)
+productRouter.put('/:id',  auth, update)
 
 
 export default productRouter

@@ -1,5 +1,6 @@
 import { Document } from "mongoose";
 import { Product } from "./domain/entities/Product";
+import e from "express";
 export interface Criteria{
     limit: number
     page: number
@@ -57,14 +58,20 @@ export interface IUser {
     age: number
     password: string
     isAdmin: boolean
-    role: string    
+    role: IRole    
   }
 
 export  type UserDTO  = Omit<IUser, 'password'>; 
-export interface IUserDocument extends IUser, Document{    
-   
-
+export interface IUserDocument extends IUser, Document{ 
     
+}
+export interface IRole{
+    id: string
+    name: string
+    permissions: string[]
+}
+
+export interface IRoleDocument extends IRole, Document{
 }
 
 

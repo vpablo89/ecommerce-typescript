@@ -13,7 +13,7 @@ const UserSchema: Schema = new Schema<IUserDocument>({
     age: { type: Number, required: true },
     password: { type: String, required: true },
     isAdmin: { type: Boolean, required: true, default: false },
-    role: { type: String, required: true, default: 'user' },
+    role: { type: Schema.Types.ObjectId, index: true, ref: 'roles', default: null },
 })
 
 

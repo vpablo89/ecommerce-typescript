@@ -1,6 +1,6 @@
 import { IUserRepository } from "../IUserRepository";
 import UserSchema from "../../../model/user/mongoose/UserSchema"
-import {User} from "../../../../domain/entities/User";
+import User from "../../../../domain/entities/User";
 import { Criteria, IUserDocument, IUsersDTO } from "@/types";
 import { UsersDTO } from "../../../../domain/dto/UsersDTO";
 

@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from "express"
 
 import { UsersDTO } from "@/domain/dto/UsersDTO"
 import UserManager from "../../domain/manager/UserManager"
-import { User } from "../../domain/entities/User"
+import  User from "../../domain/entities/User"
 
 
 export const list = async (req: Request, res: Response, next: NextFunction): Promise<void> => {

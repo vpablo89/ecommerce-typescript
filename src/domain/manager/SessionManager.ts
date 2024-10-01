@@ -2,7 +2,8 @@ import container from "../..//container";
 import { IUserRepository } from "@/data/repository/user/IUserRepository";
 import { createHash, generateToken, isValidPassword } from "../../shared";
 import userCreateValidation from "../validations/user/UserCreate";
-import { User } from "../entities/User";
+import  User  from "../entities/User";
+import { IUser } from "@/types";
 
 
 
@@ -16,12 +17,12 @@ class SessionManager {
         this.userRepository = container.resolve("UserRepository");
     }
 
-    async login(email: string, password: string): Promise<void> {
-        const user = await this.userRepository.getOneByEmail(email);
+    async login(email: string, password: string): Promise<string> {
+        const user: IUser = await this.userRepository.getOneByEmail(email);
         if (!user.email) {
             throw new Error("User not found");
         }
-        const isHashedPassword = await isValidPassword(password, user.password);
+        const isHashedPassword: boolean = await isValidPassword(password, user.password);
         if (!isHashedPassword) {
             throw new Error("Login failed, invalid password");
         }

@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { login, signup, current } from '../controller/SessionController';
-import auth from '../middlewares/auth';
+import auth from '../middlewares/Auth';
 
 const sessionRouter = Router();
 

@@ -1,6 +1,7 @@
 import { IUser } from "@/types";
+import Role from "./Role";
   
-  export class User implements IUser {
+  export  default class User implements IUser {
     id: string;
     firstName: string;
     lastName: string;
@@ -8,7 +9,7 @@ import { IUser } from "@/types";
     password: string;
     age: number;
     isAdmin: boolean;
-    role: string;    
+    role: Role;    
   
     constructor(
       user: IUser) {

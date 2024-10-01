@@ -2,7 +2,7 @@ import container from "../../container";
 import { IUserRepository } from "@/data/repository/user/IUserRepository";
 import { Criteria } from "@/types";
 import { UsersDTO } from "../dto/UsersDTO";
-import { User } from "../entities/User";
+import  User  from "../entities/User";
 import userCreateValidation from "../validations/user/UserCreate";
 import { createHash } from "../../shared";
 
