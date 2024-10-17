@@ -6,6 +6,10 @@ const ErrorHandler = (error: Error, _req: Request, res: Response, _next: NextFun
      {
       res.status(500).send({message: 'Duplicate code'}).json()        
      }
+      else if(error.message.includes('invalid_type'))
+     {
+      res.status(400).send({message: 'Invalid input'}).json()
+     }
       else if(error.message.includes('\"Required\"\n  }\n]'))
      {
       res.status(400).send({message: 'Invalid input data'}).json()

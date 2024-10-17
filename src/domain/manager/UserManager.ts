@@ -5,6 +5,7 @@ import { UsersDTO } from "../dto/UsersDTO";
 import  User  from "../entities/User";
 import userCreateValidation from "../validations/user/UserCreate";
 import { createHash } from "../../shared";
+import { RoleNames } from "@/enums";
 
 
 
@@ -19,8 +20,10 @@ class UserManager {
 
   async paginate(criteria: Criteria): Promise<UsersDTO>
   {
-    const users: UsersDTO = await this.userRepository.paginate(criteria);
-    return users;
+    const documents: UsersDTO = await this.userRepository.paginate(criteria);
+    const {users, pagination } = documents;
+
+    return {users: users.map(user => ({...user, password: undefined})), pagination};    
   }
 
   async create(data: User): Promise<User> {
@@ -45,7 +48,7 @@ class UserManager {
     if (!user) {
       throw new Error("User not found");
     }
-    return user;
+    return {...user, password:''};
   }
 
   async deleteById(id: string): Promise<void> {
@@ -59,6 +62,10 @@ class UserManager {
   async update(id: string, body: User): Promise<void> {
     
     await this.userRepository.update(id, body);
+  }
+
+  async setRole(id: string, roleName: RoleNames): Promise<void> {
+    await this.userRepository.setRole(id, roleName);
   }
 
 }

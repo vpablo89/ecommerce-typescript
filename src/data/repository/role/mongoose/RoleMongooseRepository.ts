@@ -17,13 +17,9 @@ class RoleMongooseRepository implements IRoleRepository
         return this.roleSchema.find()
         
     }
-    async create(role: Role): Promise<Role> {
+    async create(role: Role): Promise<void> {
         await this.roleSchema.create(role)
-        return new Role({
-            id: role.id,
-            name: role.name,
-            permissions: role.permissions
-        })            
+                  
     }
 
     async getOne(id: string): Promise<any> {

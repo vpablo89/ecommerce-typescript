@@ -1,9 +1,9 @@
-import { IUsersDTO } from "@/types";
+import { IUserOutput, IUsersDTO } from "@/types";
 import User from "../entities/User";
 
 
 export class UsersDTO implements IUsersDTO{
-    users: User[];
+    users: IUserOutput[];
     pagination: Object;
 
     constructor(users: User[], pagination: Object)

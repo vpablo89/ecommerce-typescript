@@ -69,7 +69,7 @@ export const deleteById = async (req: Request, res: Response, next: NextFunction
 
         await manager.deleteById(id)
 
-        res.status(204)
+        res.send({message: 'Role deleted successfully'}).status(204)
     }
     catch (error)
     {

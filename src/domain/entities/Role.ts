@@ -1,9 +1,10 @@
+import { RoleNames } from "@/enums";
 import { IRole } from "@/types";
 
 class Role implements IRole
 {
   public id : string;
-  public name : string;
+  public name : RoleNames;
   public permissions : string[];
   
   

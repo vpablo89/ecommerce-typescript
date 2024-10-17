@@ -16,9 +16,12 @@ export const list = async (req: Request, res: Response, next: NextFunction): Pro
             throw new Error('Users not found, Bad Request')
         }
         const { users, pagination } = documents
+        
         if (users.length === 0) {
             throw new Error()
         }
+
+        
 
         res.send({ status: 'success', users, ...pagination })
     }
@@ -84,3 +87,18 @@ export const update = async (req: Request, res: Response, next: NextFunction): P
         next(error)
     }
 }
+
+export const setRole = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+    try {
+        const { id } = req.params
+        const { role } = req.body
+        const manager = new UserManager()
+
+        await manager.setRole(id, role)
+
+        res.send({ message: 'Role updated successfully' })
+    }
+    catch (error) {
+        next(error)
+    }
+}  

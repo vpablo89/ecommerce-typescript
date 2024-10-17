@@ -3,6 +3,7 @@ import UserSchema from "../../../model/user/mongoose/UserSchema"
 import User from "../../../../domain/entities/User";
 import { Criteria, IUserDocument, IUsersDTO } from "@/types";
 import { UsersDTO } from "../../../../domain/dto/UsersDTO";
+import { RoleNames } from "@/enums";
 
 
 
@@ -81,6 +82,14 @@ class UserMongooseRepository implements IUserRepository {
     }
     async update(id: string, body: User): Promise<void> {
         await this.userSchema.updateOne({ _id: id   }, body)
+    }
+    async setRole(id: string, roleName: RoleNames): Promise<void> {
+        const user = await this.userSchema.findById(id)
+        if(!user){
+            throw new Error('User not found')
+        }
+        user.role.name = roleName
+        await user.save()
     }
 }
 

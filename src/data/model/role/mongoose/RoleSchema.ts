@@ -1,4 +1,6 @@
-import { IRoleDocument } from "@/types"
+import {IRoleDocument } from "../../../../types"
+
+// Ensure that the IRoleDocument interface has the correct type for the 'name' property
 import mongoose, { Schema } from "mongoose"
 import mongoosePaginate from 'mongoose-paginate-v2'
 

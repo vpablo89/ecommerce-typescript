@@ -1,6 +1,7 @@
 import { Document } from "mongoose";
 import { Product } from "./domain/entities/Product";
 import e from "express";
+import { RoleNames } from "./enums";
 export interface Criteria{
     limit: number
     page: number
@@ -20,14 +21,7 @@ export interface IProduct {
 }
 export interface IProductDocument extends IProduct, Document {
     
-  }
-  public class Tumama implements IProductDocument{
-
-  }
- 
-
-
-   
+}  
 
 export interface ListOfProducts {
     products: Array<IProduct>
@@ -60,6 +54,7 @@ export interface IUser {
     isAdmin: boolean
     role: IRole    
   }
+export type IUserOutput = Omit<IUser, 'password'>;  
 
 export  type UserDTO  = Omit<IUser, 'password'>; 
 export interface IUserDocument extends IUser, Document{ 
@@ -67,7 +62,7 @@ export interface IUserDocument extends IUser, Document{
 }
 export interface IRole{
     id: string
-    name: string
+    name: RoleNames
     permissions: string[]
 }
 

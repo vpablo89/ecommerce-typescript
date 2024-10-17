@@ -6,7 +6,7 @@ export interface IRoleRepository
 {
     list(): Promise<Role[]>
 
-    create(role: Role): Promise<Role>
+    create(role: Role): Promise<void>
 
     getOne(id: string): Promise<Role>
 
